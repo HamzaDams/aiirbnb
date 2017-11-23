@@ -1,0 +1,26 @@
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <%= link_to 'Aiirbndams', root_path, {:class=>"navbar-brand"} %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="nav navbar-nav mr-auto ">
+          <% if (!user_signed_in?) %>
+          </li>
+          <li><%= link_to 'Inscription', new_user_registration_path %></li>
+          <li><%= link_to 'Connexion', new_user_session_path %></li> 
+          <% else %>
+       <li class="nav-item dropdown show">
+            <a class="nav-link dropdown-toggle"  id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%= current_user.email %></a>
+            <div class="dropdown-menu show" aria-labelledby="dropdown03">
+              <a><%= link_to 'Mes voyages', root_path, {:class=>"dropdown-item"}%></a>
+              <a><%= link_to 'Modifier mon profile', edit_user_registration_path, {:class=>"dropdown-item"} %></a>
+
+         
+           <%= link_to 'Déconnexion',  destroy_user_session_path,:class=>"dropdown-item", method: :delete  %>
+ <% end %>
+         </div>
+       </ul>
+      </div>
+    </nav>
