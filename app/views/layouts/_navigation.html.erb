@@ -11,9 +11,9 @@
           <li><%= link_to 'Inscription', new_user_registration_path %></li>
           <li><%= link_to 'Connexion', new_user_session_path %></li> 
           <% else %>
-       <li class="nav-item dropdown show">
+       <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"  id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%= current_user.email %></a>
-            <div class="dropdown-menu show" aria-labelledby="dropdown03">
+            <div class="dropdown-menu" aria-labelledby="dropdown03">
               <a><%= link_to 'Mes voyages', root_path, {:class=>"dropdown-item"}%></a>
               <a><%= link_to 'Modifier mon profile', edit_user_registration_path, {:class=>"dropdown-item"} %></a>
 
