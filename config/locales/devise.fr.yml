@@ -28,7 +28,8 @@ fr:
         fullname: Nom complet
     models:
       user: Utilisateur
-      current_password: Mot de passe actuel
+      blank:
+       current_password: Test
   devise:
     confirmations:
       confirmed: Votre compte a été confirmé avec succès.

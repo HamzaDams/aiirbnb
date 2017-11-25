@@ -1,18 +1,21 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3>">
-            <%=image_tag avatar_url(@user), class:"avatar-full" %>
-            <div class="panel panel-default">
-                <div class="panel-headin">Vérificaiton</div>
-                <div class="panel-body">
-                    Email : <%= @user.email %>
-                    Tél : <% @user.phone_number %>
-                </div>
+                                <div class="card-group">
+          <div class="card text-white bg-dark mb-3">
+                <div class="card-header"><h2><%= @user.fullname %></h2></div>
+            <img class="card-img-top" width="10px" src="<%= avatar_url(@user)  %>" >
+            <div class="card-body">
+              
+              <h7 class="card-title"><%= @user.email %></h7>
+              <p class="card-text"><%= @user.description %>.</p>
+              <p class="card-text"><small class="text-muted">Tél : <%= @user.phone_number %></small></p>
             </div>
+          </div>
+        </div>
         </div>
         <div class="col-md-9>">
-            <h2><% @user.fullname %></h2>
-            <div class="description row-space-3"> <%= @user.description %></div>
         </div>
+
     </div>
 </div>
