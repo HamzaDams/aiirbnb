@@ -1,5 +1,6 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <%= link_to 'Aiirbndams', root_path, {:class=>"navbar-brand"} %>
+      <a href=" <%= root_path %>"> <img src="https://cdn.worldvectorlogo.com/logos/airbnb.svg"  width="120px" class="navbar-brand">
+     </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -12,7 +13,7 @@
           <li><%= link_to 'Connexion', new_user_session_path %></li> 
           <% else %>
        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"  id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%= current_user.email %></a>
+            <a class="nav-link dropdown-toggle"  id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%= image_tag avatar_url(current_user), class:"rounded-circle avatar-small" %> <%= current_user.fullname %></a>
             <div class="dropdown-menu" aria-labelledby="dropdown03">
               <a><%= link_to 'Mes voyages', root_path, {:class=>"dropdown-item"}%></a>
               <a><%= link_to 'Modifier mon profile', edit_user_registration_path, {:class=>"dropdown-item"} %></a>
