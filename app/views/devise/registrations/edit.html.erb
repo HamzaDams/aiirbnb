@@ -1,51 +1,43 @@
 <div class="container">
   <div class="row">
-       <div class="col-md-7  text-center">
-      
-        <%= image_tag avatar_url(current_user), class:"rounded-circle avatar-large" %>
-       <a href="<%=user_path(current_user.id) %>">
-            <button type="button" class="btn btn-primary" >Voir mon profil</button>
-          </a>
-          <br /><br />
-      <div class="card text-white bg-primary" >
+      <div class="col-sm">
+     
+    </div>
+      <div class="card bg-light mb-6" >
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        
-              <%= devise_error_messages! %>
-        <div class="card-header"><h5>Editer votre profil <%= current_user.fullname %>  </h5></div>
+        <%= render 'shared/devise_errors' %>
+        <div class="card-header"><h5>Editer votre profil <%= current_user.fullname %>          <a href="<%=user_path(current_user.id) %>">
+            <button type="button" class="btn btn-primary" >Voir mon profil</button>
+          </a> </h5></div>
         <div class="card-body">
-          <h4 class="card-title">Votre email</h4>
           <p class="card-text">
               <%= f.email_field :email, autofocus: true,class: "btn btn-light btn-lg btn-block", placeholder: "Votre Email"  %>
           </p>
-            <h4 class="card-title">Votre Nom & Prénom</h4>
           <p class="card-text">    <%= f.text_field :fullname, autofocus: true,class: "btn btn-light btn-lg btn-block", placeholder: "Nom et Prénom"  %></p>  
-            <h4 class="card-title">Upload photo de profil</h4>
-          <p class="card-text"><%= f.file_field :avatar, class:"btn btn-info btn-lg btn-block btn-file" %></p>
+            
+          <p class="card-text" align="center">  <h7 class="card-title">Upload photo de profil</h7> <br><br> <%= image_tag avatar_url(current_user), class:"rounded-circle avatar-large" %><br><br><%= f.file_field :avatar, class:"btn btn-info btn-lg btn-block btn-file" %></p>
               <%= f.text_field :phone_number, class:"btn btn-light btn-lg btn-block", placeholder: "Votre numéro de télephone" %>
-              <%= f.text_area :description,rows:5, col:25, class:"btn btn-light btn-lg btn-block", placeholder: "Votre description" %>
+              <%= f.text_area :description,rows:1, col:25, class:"btn btn-light btn-lg btn-block", placeholder: "Votre description" %>
               <%= f.password_field :password, autocomplete: "off",class: "btn btn-light btn-lg btn-block", placeholder: "Mot de passe" %>
               <%= f.password_field :password_confirmation, autocomplete: "off",class: "btn btn-light btn-lg btn-block", placeholder: "Confirmer votre mots de passe" %>
               <%= f.password_field :current_password, autocomplete: "off",class: "btn btn-light btn-lg btn-block", placeholder: "Votre mot de passe actuel" %>
-        </div>
-      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-  <div class="col-md-7  text-center">
-    <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-info">  <div class="actions">
-    <%= f.submit "Mettre a jour", class:"btn btn-info " %>
-  </div></button>
-  <% end %>
-  <button type="button" class="btn btn-warning">
- <%= link_to "Quitter", :back, class:"btn btn-warning " %>
-</button>
-  <button type="button" class="btn btn-danger"><%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Etes vous sur?" }, method: :delete, class:"btn btn-danger" %></button>
-</div>
+            
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+                <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-info">  <div class="actions">
+                <%= f.submit "Mettre a jour", class:"btn btn-info " %>
+              </div></button>
+              <% end %>
+              <button type="button" class="btn btn-warning">
+             <%= link_to "Quitter", :back, class:"btn btn-warning " %>
+            </button>
+              <button type="button" class="btn btn-danger"><%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Etes vous sur?" }, method: :delete, class:"btn btn-danger" %></button>
+            
+         </div>
+      </div>
     </div>
   </div>
 </div>
-
-
-    </div>
