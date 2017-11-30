@@ -5,15 +5,25 @@ class RoomsController < ApplicationController
         @rooms = current_user.rooms
     end
     def new
-        @room = current_user.rooms.build
+     
+     @room = current_user.rooms.build
+     
     end
+     
     def create
-        @room = current_user.rooms.build(room_params)
-        if @room.save
-            redirect_to @room, notice:"Votre annonce a été ajouté avec succès"
-        else
-            render :new
-        end
+     
+          @room = current_user.rooms.build(room_params)
+     
+          if @room.save
+     
+                redirect_to @room, notice:"Votre annonce a été ajouté avec succès" 
+     
+          else
+     
+               render :new
+     
+          end
+     
     end
     def show 
     end
@@ -21,12 +31,18 @@ class RoomsController < ApplicationController
     def edit 
     end
     
-    def update 
-        if @room.update(room_params)
-            redirect_to @room, notice:"Modification enrengistree"
-        else 
-         render:edit
-        end
+    def update
+     
+           if @room.update(room_params)
+     
+                  redirect_to @room, notice:"Modification enregistrée..."
+     
+           else
+     
+               render :edit
+     
+           end
+     
     end
     
 private
@@ -35,7 +51,11 @@ private
     end
     
     def room_params
-        params.require(:room).permit(:home_type, :room_type, :accomodate, :bed_room, :bath_room, :listing_name, :summary, :adress, :is_wifi, :is_tv, :is_closet, :is_shampoo,
-        :is_breakfast,:is_heating,:is_air,:is_kitchen,:price,:active)
-    end
+     
+          params.require(:room).permit(:home_type, :room_type, :accomodate, :bed_room, :bath_room, 
+                                       :listing_name, :summary, :adress, :is_wifi, :is_tv, :is_closet, 
+                                       :is_shampoo, :is_breakfast, :is_heating, :is_air, :is_kitchen, :price, 
+                                       :active)
+     
+    end   
 end

@@ -6,7 +6,13 @@
       </button>
       
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="nav navbar-nav mr-auto ">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href=" <%= new_room_path do %> <% end %>">
+              <i class="fa fa-car fa-lg"></i> Deposer une annonce
+            </a>
+          </li> 
+          
           <% if (!user_signed_in?) %>
           </li>
           <li><%= link_to 'Inscription', new_user_registration_path %></li>
