@@ -12,7 +12,7 @@
               <i class="fa fa-car fa-lg"></i> Deposer une annonce
             </a>
           <% if (!user_signed_in?) %>
-            <li class="nav-link"><%= link_to 'Inscription', new_user_registration_path %></li>
+            <li class="nav-link"><%= link_to ' Inscription', new_user_registration_path, :class=>"fa fa-user-plus btn btn-primary" %></li>
             <li class="nav-link"><%= link_to 'Connexion', new_user_session_path %></li> 
           </li> 
           <% else %>
