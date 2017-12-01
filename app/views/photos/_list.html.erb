@@ -1,0 +1,25 @@
+<% if @photos %>
+        
+    
+          
+<div class="container">
+  <div class="row">
+    <% @photos.each do |photo| %> 
+    <div class="col-sm">
+        <div class="card" style="width: 15rem;">
+          <img class="card-img-top" src="<%= photo.image.url() %>" alt="">
+          <div class="card-body">
+              <span class="pull-rigt">
+                  <%= link_to photo, remote: true, method: :delete, data: {confirm: "Voulez vous vraiment supprimer cette photo"} do %>
+                 <i class="fa fa-times fa-lg"></i>
+                  <% end %>
+              </span>
+          </div>
+        </div>
+     </div>   
+     <% end %>                
+  </div>
+</div>                
+       
+
+<% end %>
