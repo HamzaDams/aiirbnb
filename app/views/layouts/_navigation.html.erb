@@ -11,12 +11,10 @@
             <a class="nav-link" href=" <%= new_room_path do %> <% end %>">
               <i class="fa fa-car fa-lg"></i> Deposer une annonce
             </a>
-          </li> 
-          
           <% if (!user_signed_in?) %>
-          </li>
-          <li><%= link_to 'Inscription', new_user_registration_path %></li>
-          <li><%= link_to 'Connexion', new_user_session_path %></li> 
+            <li class="nav-link"><%= link_to 'Inscription', new_user_registration_path %></li>
+            <li class="nav-link"><%= link_to 'Connexion', new_user_session_path %></li> 
+          </li> 
           <% else %>
        <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"  id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%= image_tag avatar_url(current_user), class:"rounded-circle avatar-small" %> <%= current_user.fullname %></a>
