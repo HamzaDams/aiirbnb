@@ -1,0 +1,128 @@
+    <div class="card" style="margin:auto; width:60%;    ">
+        <div class="card-body">
+            
+            <!-- Photo principale de l'annonce -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- carousel -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                 <% if @photos %>
+                          <% @photos.each do |photo| %>
+                              <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="<%= photo.id %>" class="active"></li>
+                              </ol>
+                          <% end %>
+                      <% end %>
+              <div class="carousel-inner">
+                  <% if @photos %>
+                         <% @photos.each do |photo| %>
+                <div class="carousel-item <%= 'active' if photo.id == @photos[0].id %>">
+                   <%= image_tag photo.image.url(), class:"d-block w-100" %>
+                </div>
+                          <% end %>
+                          <% end %>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+                </div>
+            </div>
+            
+            <br>
+            
+            <!-- Informations principales -->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <%= image_tag avatar_url(@room.user), class:"img-circle avatar-large" %>
+                            <br>
+                            <br>
+                            <%= @room.user.fullname %>
+                        </div>
+                        <div class="col-md-9">
+                            <h4><%= @room.listing_name %></h4>
+                            <%= @room.adress %>
+                            <div class="row text-center row-space-1">
+                                <div class="col-sm-3">
+                                    <i class="fa fa-home fa-2x"></i>
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fa fa-users fa-2x"></i>
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fa fa-bed fa-2x"></i>
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fa fa-bath fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-3">
+                                    <%= @room.home_type %>
+                                </div>
+                                <div class="col-sm-3">
+                                    <%= @room.accomodate %> <%= @room.accomodate > 1 ? "Voyageurs" : "Voyageur" %>
+                                </div>
+                                <div class="col-sm-3">
+                                    <%= @room.bed_room %> <%= @room.bed_room > 1 ? "Lits" : "Lit" %>
+                                </div>
+                                <div class="col-sm-3">
+                                    <%= @room.bath_room %> <%= @room.bath_room > 1 ? "Salles de bain" : "Salle de bain" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Formulaire de réservation -->
+                </div>    
+            </div>
+            
+            <!-- Description -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>A propos de ce logement</h2>
+                    <p><%= @room.summary %></p>
+                </div>
+            </div>
+            
+            <!-- Equipements -->
+            <div class="row">
+                <div class="col-md-2">
+                    <p>Equipements</p>
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="equipments">
+                                <li class="<%= 'text-line-through' if !@room.is_wifi %>">Wifi</li>
+                                <li class="<%= 'text-line-through' if !@room.is_tv %>">Télévision</li>
+                                <li class="<%= 'text-line-through' if !@room.is_closet %>">Penderie/Commode</li>
+                                <li class="<%= 'text-line-through' if !@room.is_shampoo %>">Shampoing</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="equipments">
+                                <li class="<%= 'text-line-through' if !@room.is_kitchen %>">Cuisine</li>
+                                <li class="<%= 'text-line-through' if !@room.is_breakfast %>">Petit déjeuner</li>
+                                <li class="<%= 'text-line-through' if !@room.is_heating %>">Chauffage</li>
+                                <li class="<%= 'text-line-through' if !@room.is_air %>">Climatisation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+    
+        
+        </div>
+    </div>
+    

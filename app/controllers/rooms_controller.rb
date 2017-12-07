@@ -2,6 +2,8 @@ class RoomsController < ApplicationController
    before_action :set_room, only: [:show, :edit, :update]
    before_action :authenticate_user!, execpt: [:show]
    before_action :require_same_user, only: [:edit, :update]
+   
+   
     def index
         @rooms = current_user.rooms
     end
@@ -25,6 +27,7 @@ class RoomsController < ApplicationController
     end
     def show 
         @photos = @room.photos
+        
     end
     
     def edit 
