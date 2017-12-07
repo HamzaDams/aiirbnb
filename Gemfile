@@ -30,6 +30,7 @@ gem 'rails-i18n'
 gem 'font-awesome-sass'
 gem 'materialize-sass'
 gem 'material_icons' 
+gem 'geocoder'
 
 gem 'paperclip-cloudinary'
 # Use ActiveModel has_secure_password

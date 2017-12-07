@@ -121,8 +121,27 @@
             </div>
             
             
-    
         
         </div>
     </div>
-    
+    <!-- API GMPAS -->
+    <h3 align="center">Adresse Map</h3>
+    <div id="map" class="card" style="margin:auto; width:80%;    ">
+    <script>
+      function initMap() {
+        var uluru = {lat: <%= @room.latitude %>, lng: <%= @room.longitude %> };
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAo0WpJFftYNdiDNnOwRJNY9X-S1GbagA&callback=initMap">
+    </script>
+    </div>
+    <br><br><br>
