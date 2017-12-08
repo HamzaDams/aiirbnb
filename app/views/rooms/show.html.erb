@@ -120,28 +120,45 @@
                 </div>
             </div>
             
-            
-        
+             <h3 align="center">Adresse Map</h3>
+                <div id="map" class="card" style="margin:auto;">
+                <script>
+                  function initMap() {
+                    var uluru = {lat: <%= @room.latitude %>, lng: <%= @room.longitude %> };
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                      zoom: 15,
+                      center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                      position: uluru,
+                      map: map
+                    });
+                  }
+                </script>
+                <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAo0WpJFftYNdiDNnOwRJNY9X-S1GbagA&callback=initMap">
+                </script>
+                </div>
+            <!-- A proximite -->      
+             <h3>A proximité</h3>
+             <div class="row">
+                 <% for room in @room.nearbys(2).limit(3) %>
+                 <div class="">
+                     <div class="card " style="width:200px;">
+                         <img class="card-img-top"  src=" <%= room.photos[0].image.url() if room.photos.length > 0 %>" alt="">
+                         <div class="card-body">
+                         <div class="card-title">
+                         </div>
+                         <p class="card-text"><%= link_to room.listing_name, room %> <br>
+                         (à <%= (room.distance*1.6).round(2) %> km)
+                         </p>
+                         </div>
+                     </div>
+                 </div>
+                 <% end %>
+             </div>
         </div>
     </div>
     <!-- API GMPAS -->
-    <h3 align="center">Adresse Map</h3>
-    <div id="map" class="card" style="margin:auto; width:80%;    ">
-    <script>
-      function initMap() {
-        var uluru = {lat: <%= @room.latitude %>, lng: <%= @room.longitude %> };
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAo0WpJFftYNdiDNnOwRJNY9X-S1GbagA&callback=initMap">
-    </script>
-    </div>
+  
     <br><br><br>
