@@ -31,6 +31,8 @@ gem 'font-awesome-sass'
 gem 'materialize-sass'
 gem 'material_icons' 
 gem 'geocoder'
+gem 'jquery-ui-rails'
+gem 'momentjs-rails', '~> 2.17', '>= 2.17.1'
 
 gem 'paperclip-cloudinary'
 # Use ActiveModel has_secure_password
