@@ -82,6 +82,9 @@
                 </div>
                 <div class="col-md-4">
                     <!-- Formulaire de réservation -->
+                    <div class="">
+                        <%= render 'reservations/form' %>
+                    </div>
                 </div>    
             </div>
             
@@ -143,7 +146,7 @@
              <h3>A proximité</h3>
              <div class="row">
                  <% for room in @room.nearbys(2).limit(3) %>
-                 <div class="">
+                 <div class="col-sm">
                      <div class="card " style="width:200px;">
                          <img class="card-img-top"  src=" <%= room.photos[0].image.url() if room.photos.length > 0 %>" alt="">
                          <div class="card-body">
