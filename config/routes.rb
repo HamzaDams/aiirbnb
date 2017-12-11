@@ -9,9 +9,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
   resources :rooms do 
-    resources :reservations, only: [:create]
+  resources :reservations, only: [:create]
   end
   resources :photos
+  
+  get '/preload' => 'reservations#preload'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

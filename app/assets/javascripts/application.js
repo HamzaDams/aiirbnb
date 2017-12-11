@@ -15,7 +15,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require materialize
 //= require toastr
 //= require turbolinks
 //= require_tree .

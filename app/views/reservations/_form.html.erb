@@ -45,6 +45,19 @@
 
   <script>
   $( function() {
+      $.ajax({
+          url: '/preload',
+          date: {'room_id': <%= @room.id %>},
+          dataType: 'json',
+          success: function(data) {
+              $.each(data, function(arrID, arrValue){
+                  for(var d = new Date(arrValue.str_date); d <= new Date(arrValue.end_date);
+                  d.setDate(d.getDate() +1)){
+                      console.log(d);
+                  }
+              })
+          }
+      });
     $( "#reservation_str_date" ).datepicker({
         dateFormat: 'dd-mm-yy',
         monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août',
