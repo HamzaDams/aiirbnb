@@ -34,41 +34,142 @@
             </tbody>
         </table>
     </div>
-    
+    <h5><div id="message"></div></h5>
     <%= f.hidden_field :room_id, value: @room.id %>
     <%= f.hidden_field :price, value: @room.price %>
     <%= f.hidden_field :total, id:'reservation_total' %>
     
-    <%= f.submit "Réserver", class:"btn btn-success btn-block" %>
+    <%= f.submit "Réserver",id:" btn_book", class:"btn btn-success btn-block" %>
     
 <% end %>
 
-  <script>
-  $( function() {
-      $.ajax({
-          url: '/preload',
-          date: {'room_id': <%= @room.id %>},
-          dataType: 'json',
-          success: function(data) {
-              $.each(data, function(arrID, arrValue){
-                  for(var d = new Date(arrValue.str_date); d <= new Date(arrValue.end_date);
-                  d.setDate(d.getDate() +1)){
-                      console.log(d);
-                  }
-              })
-          }
-      });
-    $( "#reservation_str_date" ).datepicker({
-        dateFormat: 'dd-mm-yy',
-        monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août',
-        'Septembre','Octobre','Novembre','Décembre'],
-        dayNamesMin: ['D','L','M','M','J','V','S']
-    });
-    $( "#reservation_end_date" ).datepicker({
-        dateFormat: 'dd-mm-yy',
-        monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août',
-        'Septembre','Octobre','Novembre','Décembre'],
-        dayNamesMin: ['D','L','M','M','J','V','S']
-    });
-  })
-  </script>
+      <script>
+        function unavailable(date) {
+            dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            return [$.inArray(dmy, unavailableDates) == -1];
+        }
+        $(function(){
+            
+            unavailableDates = [];
+            
+            $.ajax({
+                url: '/preload',
+                data: {'room_id': <%= @room.id %>},
+                dataType: 'json',
+                success: function(data) {
+                    $.each(data, function(arrID, arrValue){
+                        for(var d = new Date(arrValue.str_date); d <= new Date(arrValue.end_date);
+                        d.setDate(d.getDate() +1)) {
+                            unavailableDates.push($.datepicker.formatDate('d-m-yy', d));
+                        }
+                    })
+                    
+                    $('#reservation_str_date').datepicker({
+                        dateFormat: 'dd-mm-yy',
+                        monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août',
+                        'Septembre','Octobre','Novembre','Décembre'],
+                        dayNamesMin: ['D','L','M','M','J','V','S'],
+                        minDate: 0,
+                        maxDate: '3m',
+                        beforeShowDay: unavailable,
+                        onSelect: function(selected) {
+                            var newdate = new Date($("#reservation_str_date").datepicker("getDate"));
+                            newdate.setDate(newdate.getDate() + 1);
+                            $('#reservation_end_date').datepicker("option","minDate", newdate);
+                            $('#reservation_end_date').attr('disabled', false);
+                            
+                            var str_date = $(this).datepicker('getDate');
+                            var end_date = $('#reservation_end_date').datepicker('getDate');
+                            var diff = (end_date - str_date)/1000/60/60/24;
+                            var days = Math.round(diff);
+                            
+                            
+                            var input = {
+                                'str_date': str_date,
+                                'end_date': end_date,
+                                'room_id': <%= @room.id %>
+                                
+                            }
+                                
+                                $.ajax({
+                                    url: '/preview',
+                                    data: input,
+                                    success: function(data) {
+                                        if (data.conflict) {
+                                            $('#message').show();
+                                            $('#message').text("Ces dates sont indisponibles");
+                                            $('#preview').hide();
+                                            $('#btn_book').attr('disabled', true);
+                                        } else {
+                                            $('#message').hide();
+                                            $('#preview').show();
+                                            $('#btn_book').attr('disabled', false);
+                                            
+                                            var total = days * <%= @room.price %>
+                                            $('#reservation_days').text(days);
+                                            $('#reservation_sum').text(total);
+                                            $('#reservation_total').val(total);
+                                        }
+                                    
+                                    }
+                                });
+                            
+                        }
+                    });
+                    
+                    $('#reservation_end_date').datepicker({
+                        dateFormat: 'dd-mm-yy',
+                        monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août',
+                        'Septembre','Octobre','Novembre','Décembre'],
+                        dayNamesMin: ['D','L','M','M','J','V','S'],
+                        minDate: 0,
+                        maxDate: '3m',
+                        beforeShowDay: unavailable,
+                        onSelect: function(selected) {
+                            $('#reservation_str_date').datepicker("option", "maxDate", selected);
+                            
+                            var str_date = $('#reservation_str_date').datepicker('getDate');
+                            var end_date = $(this).datepicker('getDate');
+                            var diff = (end_date - str_date)/1000/60/60/24;
+                            var days = Math.round(diff);
+                            
+                            
+                            var input = {
+                                'str_date': str_date,
+                                'end_date': end_date,
+                                'room_id': <%= @room.id %>
+                                
+                            }
+                                
+                                $.ajax({
+                                    url: '/preview',
+                                    data: input,
+                                    success: function(data) {
+                                        if (data.conflict) {
+                                            $('#message').show();
+                                            $('#message').text("Ces dates sont indisponibles");
+                                            $('#preview').hide();
+                                            $('#btn_book').attr('disabled', true);
+                                        } else {
+                                            $('#message').hide();
+                                            $('#preview').show();
+                                            $('#btn_book').attr('disabled', false);
+                                            
+                                            var total = days * <%= @room.price %>
+                                            $('#reservation_days').text(days);
+                                            $('#reservation_sum').text(total);
+                                            $('#reservation_total').val(total);
+                                        }
+                                    
+                                    }
+                                });
+                            
+                        }
+                    });
+                    
+                }
+            });
+            
+            
+        });
+    </script>
