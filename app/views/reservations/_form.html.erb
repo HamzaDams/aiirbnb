@@ -19,7 +19,7 @@
             <%= f.text_field :end_date, readonly: 'true', placeholder: 'jj/mm/aaaa', class:"form-control" %>
         </div>            
     </div>
-    
+    <h5><div id="message"></div></h5>
     <div id="preview" style="display: none">
         <table class="reservation-table">
             <tbody>
@@ -34,12 +34,12 @@
             </tbody>
         </table>
     </div>
-    <h5><div id="message"></div></h5>
+    
     <%= f.hidden_field :room_id, value: @room.id %>
     <%= f.hidden_field :price, value: @room.price %>
     <%= f.hidden_field :total, id:'reservation_total' %>
     
-    <%= f.submit "Réserver",id:" btn_book", class:"btn btn-success btn-block" %>
+    <%= f.submit "Réserver",id:"btn_book", class:"btn btn-primary wide btn-block", disabled: 'true' %>
     
 <% end %>
 

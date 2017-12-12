@@ -19,6 +19,10 @@ class ReservationsController < ApplicationController
             
             render json: output
         end
+        def create 
+            @reservation = current_user.reservations.create(reservation_params)
+            redirect_to @reservation.room, notice:"Votre reservation a ete validé"
+        end
      
     private
         def is_conflict(str_date, end_date)
