@@ -26,6 +26,9 @@ class ReservationsController < ApplicationController
         def your_trips
             @trips = current_user.reservations
         end
+        def your_reservations
+            @rooms = current_user.rooms
+        end
     private
         def is_conflict(str_date, end_date)
             room = Room.find(params[:room_id])

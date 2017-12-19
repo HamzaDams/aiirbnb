@@ -19,7 +19,9 @@
        <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"  id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%= image_tag avatar_url(current_user), class:"rounded-circle avatar-small" %> <%= current_user.fullname %></a>
             <div class="dropdown-menu" aria-labelledby="dropdown03">
-              <a><%= link_to 'Mes voyages', root_path, {:class=>"dropdown-item"}%></a>
+              <a><%= link_to 'Mes voyages', your_trips_path, {:class=>"dropdown-item"}%></a>
+              <a><%= link_to 'Mes Réservations', your_reservations_path, {:class=>"dropdown-item"}%></a>
+              <a><%= link_to 'Mes Annonces', rooms_path, {:class=>"dropdown-item"}%></a>
               <a><%= link_to 'Modifier mon profile', edit_user_registration_path, {:class=>"dropdown-item"} %></a>
 
          
