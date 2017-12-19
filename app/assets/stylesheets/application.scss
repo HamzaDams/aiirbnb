@@ -51,7 +51,19 @@ body {
  background-color: #FFFFFF;
  
  }
- 
+ .box {
+  transition: box-shadow .3s;
+  border: 1px solid #ccc;
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 300px;
+  float: left;
+  
+}
+.box:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
  
  
  .navbar-default .navbar-brand {

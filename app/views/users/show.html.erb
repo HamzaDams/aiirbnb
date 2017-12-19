@@ -1,5 +1,9 @@
 <div class="container">
     <div class="row">
+      <div class="col-md-left" style="    
+    position: absolute;
+    left: 0px;
+    width: 300px;">
       <div class="mainbox">
   
   <div class="toppreheader">
@@ -40,10 +44,6 @@
         </div>
         
         <div class="bottomicons">
-          <i class="fa fa-comment"></i>
-          <i class="material-icons black-text"></i>
-          <i class="fa fa-comment" aria-hidden="true"></i>
-          <i class="material-icons black-text">videocam</i>
           
         </div>
         
@@ -51,12 +51,26 @@
   </div>
 
     </div>
+    </div>
+    <hr>
+    <div class="col-md-right" style="    
+    position: absolute;
+    right: 0px;
+    width: 50%;">
+      <h4>Annonces(<%= @rooms.length %>)</h4>
+      <div class="row">
+        <% @rooms.each do |room| %>
+          <div class="col-md-4">
+            <div class="card box">
+              <img class="card-img-top" src="<%= room.photos[0].image.url(:medium) if room.photos.length > 0 %> ">
+              <div class="card-body">
+                <%= link_to room.listing_name, room %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+ </div>
 </div>
-
-
- 
-
-</div> <!-- Close .mainbox -->
-
-<a class="waves-effect waves-light btn">button</a>
 

@@ -2,6 +2,7 @@ class Room < ActiveRecord::Base
   belongs_to :user
   has_many :photos
   has_many :reservations
+  has_many :reviews
   validates :home_type, presence: true
   validates :accomodate, presence: true
   validates :bed_room, presence: true  
@@ -13,4 +14,8 @@ class Room < ActiveRecord::Base
   
   geocoded_by :adress
   after_validation :geocode, if: :adress_changed?
+  
+  def average_rating
+    reviews.count == 0 ? 0 : reviews.average.(:star).round(2)
+  end
 end
