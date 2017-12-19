@@ -23,7 +23,9 @@ class ReservationsController < ApplicationController
             @reservation = current_user.reservations.create(reservation_params)
             redirect_to @reservation.room, notice:"Votre reservation a ete validé"
         end
-     
+        def your_trips
+            @trips = current_user.reservations
+        end
     private
         def is_conflict(str_date, end_date)
             room = Room.find(params[:room_id])
