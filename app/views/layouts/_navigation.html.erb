@@ -6,6 +6,11 @@
       </button>
       
       <div class="collapse navbar-collapse" id="navbarCollapse">
+        <%= form_tag search_path, class:"navbar-form navbar-left", method: :get do %>
+          <div class="search">
+            <%= text_field_tag :search, params[:search], placeholder:"Rechercher", class:"" %>
+          </div>
+        <% end %>
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href=" <%= new_room_path do %> <% end %>">
@@ -26,8 +31,11 @@
 
          
            <%= link_to 'Déconnexion',  destroy_user_session_path,:class=>"dropdown-item", method: :delete  %>
- <% end %>
+         <% end %>
          </div>
        </ul>
       </div>
     </nav>
+    <br>
+    <br>
+    <br>

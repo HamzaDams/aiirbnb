@@ -46,8 +46,26 @@
         <div class="bottomicons">
           
         </div>
-        
+        <h4>Evaluations</h4>
+          <% @rooms.each do |room| %>
+          <% if !room.reviews.blank? %>
+            <% room.reviews.each do |review| %>
+            <div class="row">
+              <div class="col-sm text-center">
+                <%= image_tag avatar_url(review.user), class:"img-circle avatar-medium" %><br />
+                <%= review.user.fullname %>
+              </div>
+              <div class="col-sm">
+                <%= link_to room.listing_name, room %><br >
+                <%= review.comment %><br>
+                <%= review.created_at.strftime("(%d/%m/%y)") %>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+          <% end %>
       </div>
+      
   </div>
 
     </div>
@@ -71,6 +89,7 @@
         <% end %>
       </div>
     </div>
+
  </div>
 </div>
 

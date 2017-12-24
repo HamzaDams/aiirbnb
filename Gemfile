@@ -34,7 +34,7 @@ gem 'geocoder'
 gem 'jquery-ui-rails'
 gem 'momentjs-rails', '~> 2.17', '>= 2.17.1'
 gem 'car_query', '~> 0.1.0'
-
+gem 'ransack'
 gem 'paperclip-cloudinary'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
     
     def create
         @review = current_user.reviews.create(review_params)
-        redirect_to @preview.room
+        redirect_to @review.room
     end
     
     def destroy
@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     end
     
     private 
-    def reviews_params
+    def review_params
         params.require(:review).permit(:comment, :star, :room_id)
     end
 end
